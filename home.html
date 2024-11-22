@@ -54,32 +54,45 @@
             margin: 0 auto;
             max-width: 600px;
         }
-        .challenges {
+        .calendar-challenge {
             padding: 40px 20px;
             background: white;
             text-align: center;
         }
-        .challenges h2 {
+        .calendar-challenge h2 {
             font-size: 2rem;
             margin-bottom: 20px;
         }
-        .challenges-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
+        .calendar {
+            display: inline-block;
+            border: 2px solid #2575fc;
+            border-radius: 8px;
+            padding: 10px 20px;
+            text-align: center;
+            margin-bottom: 20px;
         }
-        .challenge-card {
+        .calendar .date {
+            font-size: 2rem;
+            color: #6a11cb;
+        }
+        .calendar .day {
+            font-size: 1.5rem;
+            color: #333;
+        }
+        .daily-challenge {
             background: #f9f9f9;
             border-radius: 8px;
             padding: 20px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            max-width: 600px;
         }
-        .challenge-card h3 {
+        .daily-challenge h3 {
             font-size: 1.5rem;
             margin-bottom: 10px;
         }
-        .challenge-card p {
+        .counter {
+            margin-top: 10px;
             font-size: 1rem;
             color: #555;
         }
@@ -117,25 +130,56 @@
         <h2>Welcome to Constantly Connecting</h2>
         <p>Our mission is simple: to inspire you to engage with others in meaningful ways every single day. Let’s overcome anxieties, build bridges, and embrace the beauty of human connection.</p>
     </section>
-    <section class="challenges" id="challenges">
-        <h2>Daily Challenges</h2>
-        <div class="challenges-grid">
-            <div class="challenge-card">
-                <h3>Ask a Wholesome Question</h3>
-                <p>Strike up a conversation with a stranger and ask a question that sparks joy or reflection.</p>
-            </div>
-            <div class="challenge-card">
-                <h3>Take Someone to Dinner</h3>
-                <p>Invite someone new to share a meal and enjoy an enriching conversation.</p>
-            </div>
-            <div class="challenge-card">
-                <h3>Compliment a Stranger</h3>
-                <p>Brighten someone’s day with a genuine and thoughtful compliment.</p>
+    <section class="calendar-challenge">
+        <h2>Today's Challenge</h2>
+        <div class="calendar">
+            <div class="date" id="date">--</div>
+            <div class="day" id="day">--</div>
+        </div>
+        <div class="daily-challenge">
+            <h3 id="challenge-title">Loading today's challenge...</h3>
+            <p id="challenge-desc">--</p>
+            <div class="counter">
+                <span id="challenge-count">0</span> people have completed this challenge today.
             </div>
         </div>
     </section>
     <footer>
         <p>&copy; 2024 Colby Martel. All Rights Reserved. | <a href="https://www.youtube.com/colbymartel" target="_blank">YouTube Channel</a></p>
     </footer>
+    <script>
+        // Set today's date and day
+        const dateElement = document.getElementById('date');
+        const dayElement = document.getElementById('day');
+        const now = new Date();
+        const options = { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' };
+        const formattedDate = now.toLocaleDateString('en-US', options);
+        const [weekday, ...rest] = formattedDate.split(', ');
+        dayElement.textContent = weekday;
+        dateElement.textContent = rest.join(', ');
+
+        // Define daily challenges
+        const challenges = [
+            { title: "Ask a Wholesome Question", description: "Start a conversation by asking a question that sparks joy or reflection." },
+            { title: "Take Someone to Dinner", description: "Invite a stranger or acquaintance to share a meaningful meal." },
+            { title: "Compliment a Stranger", description: "Make someone’s day by offering a genuine and thoughtful compliment." },
+            { title: "Call a Loved One", description: "Reach out to someone you care about and tell them how much they mean to you." },
+        ];
+
+        // Randomly pick a challenge
+        const challenge = challenges[Math.floor(Math.random() * challenges.length)];
+        document.getElementById('challenge-title').textContent = challenge.title;
+        document.getElementById('challenge-desc').textContent = challenge.description;
+
+        // Counter simulation (this would typically come from a server)
+        let challengeCount = Math.floor(Math.random() * 100) + 1; // Random starting number
+        document.getElementById('challenge-count').textContent = challengeCount;
+
+        // Simulate real-time counter update
+        setInterval(() => {
+            challengeCount += Math.floor(Math.random() * 5); // Increment by a random small number
+            document.getElementById('challenge-count').textContent = challengeCount;
+        }, 5000);
+    </script>
 </body>
 </html>
