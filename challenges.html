@@ -9,7 +9,7 @@
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f3f4f6;
+            background-color: #fefefe;
             color: #333;
         }
         header {
@@ -54,7 +54,7 @@
         }
         .current-challenge h2 {
             font-size: 2rem;
-            color: #6a11cb;
+            color: #2575fc;
             margin-bottom: 20px;
         }
         .current-challenge p {
@@ -67,52 +67,56 @@
             color: #2575fc;
             font-weight: bold;
         }
-        .calendar-section {
+        .prizes-section {
             padding: 40px 20px;
-            background: #eef2f3;
             text-align: center;
+            background: #f9f9f9;
+            margin: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
-        .calendar-section h2 {
+        .prizes-section h2 {
             font-size: 2rem;
             color: #6a11cb;
             margin-bottom: 20px;
         }
-        .calendar {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 10px;
+        .prize-image-container {
+            width: 80%;
             max-width: 600px;
             margin: 0 auto;
-            text-align: center;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
-        .calendar div {
+        .prize-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .calendar-section {
+            padding: 40px 20px;
             background: white;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s ease;
+            text-align: center;
+            margin: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
-        .calendar div:hover {
-            background: #6a11cb;
-            color: white;
-        }
-        .calendar .header {
-            font-weight: bold;
+        .calendar-section h2 {
+            font-size: 2rem;
             color: #2575fc;
+            margin-bottom: 20px;
         }
         footer {
             background: #222;
             color: white;
             text-align: center;
             padding: 20px;
-            margin-top: 20px;
         }
         footer p {
             margin: 0;
         }
         footer a {
-            color: #2575fc;
+            color: #6a11cb;
             text-decoration: none;
         }
         footer a:hover {
@@ -137,64 +141,57 @@
         <p id="challenge-description">Loading today's challenge...</p>
         <p class="counter">Completed by <span id="completion-count">0</span> people today!</p>
     </section>
+    <section class="prizes-section">
+        <h2>Win Exciting Prizes</h2>
+        <div class="prize-image-container">
+            <img src="https://via.placeholder.com/600x400?text=Prize+1" alt="Prize 1" class="prize-image" id="prize-image">
+        </div>
+    </section>
     <section class="calendar-section">
         <h2>Challenge Calendar</h2>
-        <div class="calendar" id="calendar">
-            <div class="header">Sun</div>
-            <div class="header">Mon</div>
-            <div class="header">Tue</div>
-            <div class="header">Wed</div>
-            <div class="header">Thu</div>
-            <div class="header">Fri</div>
-            <div class="header">Sat</div>
-            <!-- Calendar days will be dynamically generated -->
-        </div>
+        <p>Past challenges are coming soon...</p>
     </section>
     <footer>
         <p>&copy; 2024 Constantly Connecting. All Rights Reserved. | <a href="https://www.youtube.com/colbymartel" target="_blank">Visit YouTube</a></p>
     </footer>
     <script>
-        const challengeDescription = document.getElementById('challenge-description');
-        const completionCount = document.getElementById('completion-count');
-        const calendar = document.getElementById('calendar');
-
         // Example challenge data
         const challenges = [
-            { date: '2024-11-01', description: 'Ask a stranger about their favorite childhood memory.' },
-            { date: '2024-11-02', description: 'Compliment three strangers on something unique about them.' },
-            { date: '2024-11-03', description: 'Share a positive story from your day with a stranger.' },
+            { description: 'Compliment three strangers on something unique about them.' },
+            { description: 'Ask a stranger about their favorite childhood memory.' },
+            { description: 'Share a positive story from your day with a stranger.' },
         ];
 
-        // Today's challenge
-        const today = new Date().toISOString().split('T')[0];
-        const todaysChallenge = challenges.find(ch => ch.date === today) || { description: 'No challenge set for today.' };
-        challengeDescription.textContent = todaysChallenge.description;
+        // Example prize images
+        const prizeImages = [
+            "https://via.placeholder.com/600x400?text=Prize+1",
+            "https://via.placeholder.com/600x400?text=Prize+2",
+            "https://via.placeholder.com/600x400?text=Prize+3",
+        ];
+
+        // Set today's challenge
+        const challengeDescription = document.getElementById('challenge-description');
+        challengeDescription.textContent = challenges[0].description;
 
         // Simulated completion count
-        let completionCounter = Math.floor(Math.random() * 100) + 1;
-        completionCount.textContent = completionCounter;
+        let completionCount = Math.floor(Math.random() * 100) + 1;
+        const completionCounter = document.getElementById('completion-count');
+        completionCounter.textContent = completionCount;
 
         // Simulate live updates to completion count
         setInterval(() => {
-            completionCounter += Math.floor(Math.random() * 5);
-            completionCount.textContent = completionCounter;
+            completionCount += Math.floor(Math.random() * 5);
+            completionCounter.textContent = completionCount;
         }, 5000);
 
-        // Generate calendar
-        const generateCalendar = () => {
-            const daysInMonth = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0).getDate();
-            for (let i = 1; i <= daysInMonth; i++) {
-                const dayDiv = document.createElement('div');
-                const date = `2024-11-${i.toString().padStart(2, '0')}`;
-                const challenge = challenges.find(ch => ch.date === date);
-                dayDiv.textContent = i;
-                if (challenge) {
-                    dayDiv.title = challenge.description;
-                }
-                calendar.appendChild(dayDiv);
-            }
-        };
-        generateCalendar();
+        // Rotating prize images
+        const prizeImage = document.getElementById('prize-image');
+        let currentPrizeIndex = 0;
+
+        setInterval(() => {
+            currentPrizeIndex = (currentPrizeIndex + 1) % prizeImages.length;
+            prizeImage.src = prizeImages[currentPrizeIndex];
+        }, 3000);
     </script>
 </body>
 </html>
