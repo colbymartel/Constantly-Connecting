@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guess My Favorite Music Artist</title>
+    <title>Guess My Favorite Music Artist | Constantly Connecting</title>
     <style>
         /* General Body Styling */
         body {
@@ -12,7 +12,6 @@
             padding: 0;
             background-color: #f0f8ff; /* Light sky blue background */
             color: #333;
-            text-align: center;
             line-height: 1.6;
         }
 
@@ -21,13 +20,13 @@
             background: linear-gradient(90deg, #87cefa, #4682b4);
             color: white;
             padding: 20px 0;
-            margin-bottom: 20px;
+            text-align: center;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         header h1 {
             margin: 0;
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-weight: bold;
         }
 
@@ -36,10 +35,14 @@
             font-size: 1.2rem;
         }
 
-        /* Navigation Styling */
+        /* Navigation Bar Styling */
         nav {
-            background-color: #4682b4;
+            text-align: center;
             padding: 10px 0;
+            background: #4682b4;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         nav a {
@@ -55,32 +58,50 @@
             color: #d0eaff;
         }
 
-        /* Game Container Styling */
+        /* Hero Section Styling */
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+            background: linear-gradient(180deg, #e6f7ff, #ffffff);
+            color: #4682b4;
+        }
+
+        .hero h2 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            font-weight: bold;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin: 0 auto;
+            max-width: 600px;
+        }
+
+        /* Game Section */
+        .game-section {
+            padding: 50px 20px;
+            background-color: #ffffff;
+            text-align: center;
+        }
+
+        .game-section h3 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: #4682b4;
+        }
+
         .game-container {
             padding: 30px;
             max-width: 600px;
-            margin: 20px auto;
-            background: linear-gradient(180deg, #ffffff, #e6f7ff);
+            margin: 0 auto;
+            background: white;
             border-radius: 15px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
             text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .game-container:hover {
-            transform: scale(1.02);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Heading within the Game Container */
-        .game-container h2 {
-            font-size: 1.8rem;
-            color: #4682b4;
-            margin-bottom: 20px;
-            font-weight: bold;
-        }
-
-        /* Input Field Styling */
         .game-container input {
             padding: 12px 15px;
             font-size: 1.1rem;
@@ -88,7 +109,7 @@
             max-width: 400px;
             margin-bottom: 15px;
             border: 2px solid #87cefa;
-            border-radius: 10px;
+            border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             transition: border 0.3s ease, box-shadow 0.3s ease;
         }
@@ -99,7 +120,6 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
-        /* Button Styling */
         .game-container button {
             padding: 12px 25px;
             font-size: 1.1rem;
@@ -119,7 +139,12 @@
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
         }
 
-        /* Response Text Styling */
+        .stats {
+            margin-top: 20px;
+            font-size: 1.3rem;
+            color: #4682b4;
+        }
+
         .response {
             margin-top: 20px;
             font-size: 1.3rem;
@@ -128,7 +153,6 @@
             text-align: center;
         }
 
-        /* Share Button Styling */
         .share-container {
             margin-top: 20px;
         }
@@ -151,6 +175,28 @@
             transform: translateY(-3px);
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
         }
+
+        /* Footer */
+        footer {
+            background: #4682b4;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        footer a {
+            color: #f0f8ff;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -163,62 +209,81 @@
         <a href="challenges.html">Challenges</a>
         <a href="community.html">Community</a>
         <a href="rewards.html">Rewards</a>
+        <a href="game.html">Play</a>
         <a href="contact.html">Contact</a>
     </nav>
-    <div class="game-container">
-        <h2>Ask Your Question</h2>
-        <input type="text" id="question-input" placeholder="Type your question here..." />
-        <button id="submit-question">Submit</button>
-        <div class="response" id="response">Ask a question to start narrowing it down!</div>
-        <div class="share-container" id="share-container" style="display: none;">
-            <button id="share-button">Share Your Result</button>
+    <section class="game-section">
+        <h3>Start Guessing</h3>
+        <div class="game-container">
+            <input type="text" id="question-input" placeholder="Type your question here..." />
+            <button id="submit-question">Submit</button>
+            <div class="stats">Questions Asked: <span id="question-count">0</span></div>
+            <div class="response" id="response">Ask a question to start narrowing it down!</div>
+            <div class="share-container" id="share-container" style="display: none;">
+                <button id="share-button">Share Your Result</button>
+            </div>
         </div>
-    </div>
+    </section>
+    <footer>
+        <p>&copy; 2024 Constantly Connecting. All Rights Reserved. | <a href="https://www.youtube.com/colbymartel" target="_blank">Visit YouTube</a></p>
+    </footer>
 
     <script>
         const questionInput = document.getElementById("question-input");
         const submitQuestion = document.getElementById("submit-question");
+        const questionCountDisplay = document.getElementById("question-count");
         const responseDisplay = document.getElementById("response");
         const shareContainer = document.getElementById("share-container");
         const shareButton = document.getElementById("share-button");
 
         let questionCount = 0;
         let hasGuessedCorrectly = false;
-        const correctAnswer = "taylor swift"; // Correct artist
+        const correctAnswer = "noah kahan"; // Lowercase to standardize comparisons
 
-        // Function to handle question submission
-        submitQuestion.addEventListener("click", () => {
+        // Function to handle submission
+        const handleSubmission = () => {
             if (hasGuessedCorrectly) {
                 responseDisplay.textContent = "You've already guessed correctly! Share your result.";
                 return;
             }
 
-            const question = questionInput.value.trim().toLowerCase(); // Normalize input
-
+            const question = questionInput.value.trim().toLowerCase();
             if (question === "") {
                 responseDisplay.textContent = "Please enter a question.";
                 return;
             }
 
-            // Increment question count
             questionCount++;
+            questionCountDisplay.textContent = questionCount;
 
-            // Check for the correct guess
             if (question === `is it ${correctAnswer}?` || question === correctAnswer) {
-                responseDisplay.textContent = `Correct! My favorite artist is ${correctAnswer.charAt(0).toUpperCase() + correctAnswer.slice(1)}. 🎉`;
+                responseDisplay.textContent = `Correct! Today's music artist is ${correctAnswer
+                    .split(" ")
+                    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                    .join(" ")}. 🎉`;
                 hasGuessedCorrectly = true;
-                shareContainer.style.display = "block"; // Show share button
+                shareContainer.style.display = "block";
             } else {
                 responseDisplay.textContent = "Interesting question! Try another.";
             }
 
-            // Clear the input field
             questionInput.value = "";
+        };
+
+        // Attach event listener to the button
+        submitQuestion.addEventListener("click", handleSubmission);
+
+        // Allow pressing Enter to submit
+        questionInput.addEventListener("keypress", (event) => {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                handleSubmission();
+            }
         });
 
         // Share functionality
         shareButton.addEventListener("click", () => {
-            const shareText = `Congrats! You guessed today's music artist on Constantly Connecting in ${questionCount} questions. 🌟`;
+            const shareText = `Congrats! You guessed today's music artist on Constantly Connecting in ${questionCount} guesses! 🌟`;
             navigator.clipboard.writeText(shareText).then(() => {
                 alert("Result copied to clipboard! Share it with your friends.");
             }).catch(err => {

@@ -3,103 +3,151 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact | Constantly Connecting</title>
+    <title>Contact Us | Constantly Connecting</title>
     <style>
+        /* General Body Styling */
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f3f4f6;
+            background-color: #f0f8ff; /* Light sky blue background */
             color: #333;
-            text-align: center;
+            line-height: 1.6;
         }
+
+        /* Header Styling */
         header {
-            background: linear-gradient(45deg, #6a11cb, #2575fc);
+            background: linear-gradient(90deg, #87cefa, #4682b4);
             color: white;
             padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 3rem;
+            font-weight: bold;
+        }
+
+        header p {
+            margin: 5px 0 0;
+            font-size: 1.2rem;
+        }
+
+        /* Navigation Bar Styling */
+        nav {
+            text-align: center;
+            padding: 10px 0;
+            background: #4682b4;
             position: sticky;
             top: 0;
             z-index: 1000;
         }
-        header h1 {
-            margin: 0;
-            font-size: 2.5rem;
-            font-weight: bold;
-        }
-        header p {
-            font-size: 1.2rem;
-            margin: 10px 0 0;
-        }
-        nav {
-            margin-top: 15px;
-        }
+
         nav a {
             color: white;
             text-decoration: none;
             margin: 0 15px;
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: bold;
             transition: color 0.3s ease;
         }
+
         nav a:hover {
-            color: #eef2f3;
+            color: #d0eaff;
         }
-        .contact-section {
-            padding: 40px 20px;
-            background: #eef2f3;
+
+        /* Hero Section Styling */
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+            background: linear-gradient(180deg, #e6f7ff, #ffffff);
+            color: #4682b4;
         }
-        .contact-section h2 {
+
+        .hero h2 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            font-weight: bold;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin: 0 auto;
+            max-width: 600px;
+        }
+
+        /* Contact Form Section */
+        .form-section {
+            padding: 50px 20px;
+            background-color: #f0f8ff;
+            text-align: center;
+        }
+
+        .form-section h3 {
             font-size: 2rem;
-            color: #6a11cb;
             margin-bottom: 20px;
+            color: #4682b4;
         }
-        .contact-form {
+
+        .form-section form {
+            max-width: 600px;
+            margin: 0 auto;
             background: white;
             padding: 20px;
-            max-width: 600px;
-            margin: 20px auto;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
-        .contact-form input,
-        .contact-form textarea,
-        .contact-form button {
+
+        .form-section input,
+        .form-section textarea,
+        .form-section button {
             width: 100%;
-            margin-bottom: 10px;
-            padding: 10px;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 2px solid #87cefa;
+            border-radius: 8px;
             font-size: 1rem;
-            border: 1px solid #ccc;
-            border-radius: 5px;
         }
-        .contact-form textarea {
-            resize: none;
-            height: 100px;
+
+        .form-section textarea {
+            resize: vertical;
         }
-        .contact-form button {
-            background: #2575fc;
+
+        .form-section button {
+            background: #4682b4;
             color: white;
             font-weight: bold;
-            border: none;
             cursor: pointer;
-            transition: background 0.3s ease;
+            transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
         }
-        .contact-form button:hover {
-            background: #6a11cb;
+
+        .form-section button:hover {
+            background: #315f85;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
         }
+
+        /* Footer */
         footer {
-            background: #222;
+            background: #4682b4;
             color: white;
             text-align: center;
             padding: 20px;
-            margin-top: 20px;
+            margin-top: 50px;
         }
+
         footer p {
             margin: 0;
         }
+
         footer a {
-            color: #2575fc;
+            color: #f0f8ff;
             text-decoration: none;
         }
+
         footer a:hover {
             text-decoration: underline;
         }
@@ -107,45 +155,32 @@
 </head>
 <body>
     <header>
-        <h1>Contact</h1>
-        <p>Submit Your Challenge Ideas or Send Me a Message</p>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="challenges.html">Challenges</a>
-            <a href="community.html">Community</a>
-            <a href="rewards.html">Rewards</a>
-            <a href="game.html">Play</a>
-            <a href="contact.html">Contact</a>
-        </nav>
+        <h1>Contact Us</h1>
+        <p>Have questions, ideas, or stories to share? We'd love to hear from you!</p>
     </header>
-    <section class="contact-section">
-        <h2>Get in Touch</h2>
-        <form class="contact-form" id="contact-form">
-            <input type="text" id="name" placeholder="Your Name" required>
-            <input type="email" id="email" placeholder="Your Email" required>
-            <textarea id="message" placeholder="Write your message or challenge idea here..." required></textarea>
-            <button type="submit">Submit</button>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="challenges.html">Challenges</a>
+        <a href="community.html">Community</a>
+        <a href="rewards.html">Rewards</a>
+        <a href="game.html">Play</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+    <section class="hero">
+        <h2>Reach Out to Us</h2>
+        <p>Let us know how we can help, or share your feedback to make Constantly Connecting even better.</p>
+    </section>
+    <section class="form-section">
+        <h3>Send Us a Message</h3>
+        <form action="#" method="POST">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Write your message here..." rows="6" required></textarea>
+            <button type="submit">Send Message</button>
         </form>
-        <p id="form-response" style="color: #6a11cb; font-weight: bold;"></p>
     </section>
     <footer>
         <p>&copy; 2024 Constantly Connecting. All Rights Reserved. | <a href="https://www.youtube.com/colbymartel" target="_blank">Visit YouTube</a></p>
     </footer>
-    <script>
-        const form = document.getElementById('contact-form');
-        const formResponse = document.getElementById('form-response');
-
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-
-            // Simulate form submission
-            formResponse.textContent = "Thank you, " + name + "! Your message has been sent.";
-            form.reset();
-        });
-    </script>
 </body>
 </html>

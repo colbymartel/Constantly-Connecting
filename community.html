@@ -5,117 +5,197 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Community | Constantly Connecting</title>
     <style>
+        /* General Body Styling */
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f3f4f6;
+            background-color: #f0f8ff; /* Light sky blue background */
             color: #333;
-            text-align: center;
+            line-height: 1.6;
         }
+
+        /* Header Styling */
         header {
-            background: linear-gradient(45deg, #6a11cb, #2575fc);
+            background: linear-gradient(90deg, #87cefa, #4682b4);
             color: white;
             padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 3rem;
+            font-weight: bold;
+        }
+
+        header p {
+            margin: 5px 0 0;
+            font-size: 1.2rem;
+        }
+
+        /* Navigation Bar Styling */
+        nav {
+            text-align: center;
+            padding: 10px 0;
+            background: #4682b4;
             position: sticky;
             top: 0;
             z-index: 1000;
         }
-        header h1 {
-            margin: 0;
-            font-size: 2.5rem;
-            font-weight: bold;
-        }
-        header p {
-            font-size: 1.2rem;
-            margin: 10px 0 0;
-        }
-        nav {
-            margin-top: 15px;
-        }
+
         nav a {
             color: white;
             text-decoration: none;
             margin: 0 15px;
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: bold;
             transition: color 0.3s ease;
         }
+
         nav a:hover {
-            color: #eef2f3;
+            color: #d0eaff;
         }
+
+        /* Hero Section Styling */
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+            background: linear-gradient(180deg, #e6f7ff, #ffffff);
+            color: #4682b4;
+        }
+
+        .hero h2 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            font-weight: bold;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin: 0 auto;
+            max-width: 600px;
+        }
+
+        /* Community Section */
         .community-section {
-            padding: 40px 20px;
-            background: #eef2f3;
+            padding: 50px 20px;
+            text-align: center;
+            background-color: #ffffff;
         }
-        .community-section h2 {
+
+        .community-section h3 {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            color: #4682b4;
+        }
+
+        .community-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .community-item {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: left;
+        }
+
+        .community-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .community-item img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .community-item h4 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #4682b4;
+        }
+
+        .community-item p {
+            font-size: 1rem;
+            color: #333;
+        }
+
+        /* Form Section */
+        .form-section {
+            padding: 50px 20px;
+            background-color: #f0f8ff;
+            text-align: center;
+        }
+
+        .form-section h3 {
             font-size: 2rem;
-            color: #6a11cb;
             margin-bottom: 20px;
+            color: #4682b4;
         }
-        .upload-form {
+
+        .form-section form {
+            max-width: 600px;
+            margin: 0 auto;
             background: white;
             padding: 20px;
-            max-width: 600px;
-            margin: 20px auto;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
-        .upload-form input,
-        .upload-form textarea,
-        .upload-form button {
+
+        .form-section input,
+        .form-section textarea,
+        .form-section button {
             width: 100%;
-            margin-bottom: 10px;
-            padding: 10px;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 2px solid #87cefa;
+            border-radius: 8px;
             font-size: 1rem;
-            border: 1px solid #ccc;
-            border-radius: 5px;
         }
-        .upload-form button {
-            background: #2575fc;
+
+        .form-section button {
+            background: #4682b4;
             color: white;
             font-weight: bold;
-            border: none;
             cursor: pointer;
-            transition: background 0.3s ease;
+            transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
         }
-        .upload-form button:hover {
-            background: #6a11cb;
+
+        .form-section button:hover {
+            background: #315f85;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
         }
-        .uploads {
-            padding: 20px;
-        }
-        .upload-item {
-            background: white;
-            margin: 10px auto;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
-            text-align: left;
-        }
-        .upload-item img {
-            max-width: 100%;
-            border-radius: 5px;
-        }
-        .upload-item p {
-            margin-top: 10px;
-            font-size: 1rem;
-        }
+
+        /* Footer */
         footer {
-            background: #222;
+            background: #4682b4;
             color: white;
             text-align: center;
             padding: 20px;
-            margin-top: 20px;
+            margin-top: 50px;
         }
+
         footer p {
             margin: 0;
         }
+
         footer a {
-            color: #2575fc;
+            color: #f0f8ff;
             text-decoration: none;
         }
+
         footer a:hover {
             text-decoration: underline;
         }
@@ -123,70 +203,53 @@
 </head>
 <body>
     <header>
-        <h1>Community</h1>
-        <p>Share Your Moments of Connection</p>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="challenges.html">Challenges</a>
-            <a href="community.html">Community</a>
-            <a href="rewards.html">Rewards</a>
-            <a href="game.html">Play</a>
-            <a href="contact.html">Contact</a>
-        </nav>
+        <h1>Community Stories</h1>
+        <p>Celebrate connections made by our amazing community.</p>
     </header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="challenges.html">Challenges</a>
+        <a href="community.html">Community</a>
+        <a href="rewards.html">Rewards</a>
+        <a href="game.html">Play</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+    <section class="hero">
+        <h2>Be Inspired by Stories of Connection</h2>
+        <p>See how our community is overcoming anxieties and fostering human connection. Share your own story below!</p>
+    </section>
     <section class="community-section">
-        <h2>Upload Your Connection Story</h2>
-        <div class="upload-form">
-            <input type="file" id="image-upload" accept="image/*" />
-            <textarea id="caption-upload" rows="3" placeholder="Write a caption about your connection..."></textarea>
-            <button id="upload-button">Upload</button>
+        <h3>Recent Stories</h3>
+        <div class="community-grid">
+            <div class="community-item">
+                <img src="https://via.placeholder.com/400x300" alt="Story Image">
+                <h4>Stranger to Friend</h4>
+                <p>"I asked someone at a coffee shop about their favorite book. Now we chat weekly!"</p>
+            </div>
+            <div class="community-item">
+                <img src="https://via.placeholder.com/400x300" alt="Story Image">
+                <h4>Shared Laughs</h4>
+                <p>"I complimented someone's sense of humor during a class. We’ve been laughing together ever since."</p>
+            </div>
+            <div class="community-item">
+                <img src="https://via.placeholder.com/400x300" alt="Story Image">
+                <h4>Kind Words Matter</h4>
+                <p>"Telling a stranger they inspired me made my day—and theirs!"</p>
+            </div>
         </div>
     </section>
-    <section class="uploads">
-        <h2>Community Gallery</h2>
-        <div id="uploads-container"></div>
+    <section class="form-section">
+        <h3>Share Your Story</h3>
+        <form action="#" method="POST">
+            <input type="text" placeholder="Your Name" required>
+            <input type="text" placeholder="Story Title" required>
+            <textarea placeholder="Write your story here..." rows="6" required></textarea>
+            <input type="file" accept="image/*" required>
+            <button type="submit">Submit Story</button>
+        </form>
     </section>
     <footer>
         <p>&copy; 2024 Constantly Connecting. All Rights Reserved. | <a href="https://www.youtube.com/colbymartel" target="_blank">Visit YouTube</a></p>
     </footer>
-    <script>
-        // Select elements
-        const uploadButton = document.getElementById('upload-button');
-        const imageUpload = document.getElementById('image-upload');
-        const captionUpload = document.getElementById('caption-upload');
-        const uploadsContainer = document.getElementById('uploads-container');
-
-        // Handle upload button click
-        uploadButton.addEventListener('click', () => {
-            const file = imageUpload.files[0];
-            const caption = captionUpload.value;
-
-            if (!file || !caption) {
-                alert('Please upload an image and write a caption.');
-                return;
-            }
-
-            const reader = new FileReader();
-
-            // Render the uploaded image and caption
-            reader.onload = () => {
-                const uploadItem = document.createElement('div');
-                uploadItem.classList.add('upload-item');
-
-                uploadItem.innerHTML = `
-                    <img src="${reader.result}" alt="Uploaded Connection Image" />
-                    <p>${caption}</p>
-                `;
-
-                uploadsContainer.appendChild(uploadItem);
-
-                // Clear inputs
-                imageUpload.value = '';
-                captionUpload.value = '';
-            };
-
-            reader.readAsDataURL(file);
-        });
-    </script>
 </body>
 </html>

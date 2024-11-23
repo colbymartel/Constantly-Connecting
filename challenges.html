@@ -5,120 +5,174 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Challenges | Constantly Connecting</title>
     <style>
+        /* General Body Styling */
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #fefefe;
+            background-color: #f0f8ff; /* Light sky blue background */
             color: #333;
+            line-height: 1.6;
         }
+
+        /* Header Styling */
         header {
-            background: linear-gradient(45deg, #6a11cb, #2575fc);
+            background: linear-gradient(90deg, #87cefa, #4682b4);
             color: white;
             padding: 20px 0;
             text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 3rem;
+            font-weight: bold;
+        }
+
+        header p {
+            margin: 5px 0 0;
+            font-size: 1.2rem;
+        }
+
+        /* Navigation Bar Styling */
+        nav {
+            text-align: center;
+            padding: 10px 0;
+            background: #4682b4;
             position: sticky;
             top: 0;
             z-index: 1000;
         }
-        header h1 {
-            margin: 0;
-            font-size: 2.5rem;
-            font-weight: bold;
-        }
-        header p {
-            font-size: 1.2rem;
-            margin: 10px 0 0;
-        }
-        nav {
-            margin-top: 15px;
-        }
+
         nav a {
             color: white;
             text-decoration: none;
             margin: 0 15px;
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: bold;
             transition: color 0.3s ease;
         }
+
         nav a:hover {
-            color: #eef2f3;
+            color: #d0eaff;
         }
-        .current-challenge {
-            padding: 40px 20px;
-            background: white;
+
+        /* Hero Section Styling */
+        .hero {
             text-align: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            margin: 20px;
-            border-radius: 10px;
+            padding: 100px 20px;
+            background: linear-gradient(180deg, #e6f7ff, #ffffff);
+            color: #4682b4;
         }
-        .current-challenge h2 {
-            font-size: 2rem;
-            color: #2575fc;
-            margin-bottom: 20px;
-        }
-        .current-challenge p {
-            font-size: 1.2rem;
-            line-height: 1.6;
-        }
-        .counter {
-            margin-top: 10px;
-            font-size: 1.2rem;
-            color: #2575fc;
+
+        .hero h2 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
             font-weight: bold;
+            line-height: 1.2;
         }
-        .prizes-section {
-            padding: 40px 20px;
-            text-align: center;
-            background: #f9f9f9;
-            margin: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-        .prizes-section h2 {
-            font-size: 2rem;
-            color: #6a11cb;
-            margin-bottom: 20px;
-        }
-        .prize-image-container {
-            width: 80%;
-            max-width: 600px;
+
+        .hero p {
+            font-size: 1.3rem;
             margin: 0 auto;
+            max-width: 600px;
+        }
+
+        /* Daily Challenge Section */
+        .daily-challenge {
+            padding: 50px 20px;
+            text-align: center;
+            background-color: #ffffff;
+        }
+
+        .daily-challenge h3 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: #4682b4;
+        }
+
+        .daily-challenge p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .daily-challenge button {
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            background: #4682b4;
+            color: white;
+            border: none;
             border-radius: 10px;
-            overflow: hidden;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
-        .prize-image {
-            width: 100%;
-            height: auto;
-            display: block;
+
+        .daily-challenge button:hover {
+            background: #315f85;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
         }
+
+        /* Calendar Section */
         .calendar-section {
-            padding: 40px 20px;
-            background: white;
+            padding: 50px 20px;
+            background-color: #f0f8ff;
             text-align: center;
-            margin: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
-        .calendar-section h2 {
+
+        .calendar-section h3 {
             font-size: 2rem;
-            color: #2575fc;
             margin-bottom: 20px;
+            color: #4682b4;
         }
+
+        .calendar {
+            max-width: 800px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+        }
+
+        .calendar div {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #4682b4;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .calendar div:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
         footer {
-            background: #222;
+            background: #4682b4;
             color: white;
             text-align: center;
             padding: 20px;
+            margin-top: 50px;
         }
+
         footer p {
             margin: 0;
         }
+
         footer a {
-            color: #6a11cb;
+            color: #f0f8ff;
             text-decoration: none;
         }
+
         footer a:hover {
             text-decoration: underline;
         }
@@ -126,73 +180,49 @@
 </head>
 <body>
     <header>
-        <h1>Challenges</h1>
-        <p>Discover Today's Challenge and Explore Past Ones</p>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="challenges.html">Challenges</a>
-            <a href="community.html">Community</a>
-            <a href="rewards.html">Rewards</a>
-            <a href="game.html">Play</a>
-            <a href="contact.html">Contact</a>
-        </nav>
+        <h1>Daily Challenges</h1>
+        <p>Connect with others through fun, meaningful challenges.</p>
     </header>
-    <section class="current-challenge">
-        <h2>Today's Challenge</h2>
-        <p id="challenge-description">Loading today's challenge...</p>
-        <p class="counter">Completed by <span id="completion-count">0</span> people today!</p>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="challenges.html">Challenges</a>
+        <a href="community.html">Community</a>
+        <a href="rewards.html">Rewards</a>
+        <a href="game.html">Play</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+    <section class="hero">
+        <h2>Discover and Complete Challenges</h2>
+        <p>Take on a new challenge every day and explore past ones. Start connecting now!</p>
     </section>
-    <section class="prizes-section">
-        <h2>Win Exciting Prizes</h2>
-        <div class="prize-image-container">
-            <img src="https://via.placeholder.com/600x400?text=Prize+1" alt="Prize 1" class="prize-image" id="prize-image">
-        </div>
+    <section class="daily-challenge">
+        <h3>Today's Challenge</h3>
+        <p>Ask a stranger about their favorite childhood memory.</p>
+        <button>Mark as Complete</button>
     </section>
     <section class="calendar-section">
-        <h2>Challenge Calendar</h2>
-        <p>Past challenges are coming soon...</p>
+        <h3>Past Challenges</h3>
+        <div class="calendar">
+            <div>Nov 1</div>
+            <div>Nov 2</div>
+            <div>Nov 3</div>
+            <div>Nov 4</div>
+            <div>Nov 5</div>
+            <div>Nov 6</div>
+            <div>Nov 7</div>
+            <div>Nov 8</div>
+            <div>Nov 9</div>
+            <div>Nov 10</div>
+            <div>Nov 11</div>
+            <div>Nov 12</div>
+            <div>Nov 13</div>
+            <div>Nov 14</div>
+            <div>Nov 15</div>
+            <div>Nov 16</div>
+        </div>
     </section>
     <footer>
         <p>&copy; 2024 Constantly Connecting. All Rights Reserved. | <a href="https://www.youtube.com/colbymartel" target="_blank">Visit YouTube</a></p>
     </footer>
-    <script>
-        // Example challenge data
-        const challenges = [
-            { description: 'Compliment three strangers on something unique about them.' },
-            { description: 'Ask a stranger about their favorite childhood memory.' },
-            { description: 'Share a positive story from your day with a stranger.' },
-        ];
-
-        // Example prize images
-        const prizeImages = [
-            "https://via.placeholder.com/600x400?text=Prize+1",
-            "https://via.placeholder.com/600x400?text=Prize+2",
-            "https://via.placeholder.com/600x400?text=Prize+3",
-        ];
-
-        // Set today's challenge
-        const challengeDescription = document.getElementById('challenge-description');
-        challengeDescription.textContent = challenges[0].description;
-
-        // Simulated completion count
-        let completionCount = Math.floor(Math.random() * 100) + 1;
-        const completionCounter = document.getElementById('completion-count');
-        completionCounter.textContent = completionCount;
-
-        // Simulate live updates to completion count
-        setInterval(() => {
-            completionCount += Math.floor(Math.random() * 5);
-            completionCounter.textContent = completionCount;
-        }, 5000);
-
-        // Rotating prize images
-        const prizeImage = document.getElementById('prize-image');
-        let currentPrizeIndex = 0;
-
-        setInterval(() => {
-            currentPrizeIndex = (currentPrizeIndex + 1) % prizeImages.length;
-            prizeImage.src = prizeImages[currentPrizeIndex];
-        }, 3000);
-    </script>
 </body>
 </html>

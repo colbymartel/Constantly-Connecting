@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Constantly Connecting | Home</title>
-    <link rel="icon" href="images/favicon.ico">
+    <title>Constantly Connecting</title>
     <style>
+        /* General Body Styling */
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
@@ -15,14 +15,12 @@
             line-height: 1.6;
         }
 
+        /* Header Styling */
         header {
-            background: linear-gradient(90deg, #87cefa, #4682b4); /* Gradient sky blues */
+            background: linear-gradient(90deg, #87cefa, #4682b4);
             color: white;
             padding: 20px 0;
             text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
@@ -30,17 +28,21 @@
             margin: 0;
             font-size: 3rem;
             font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 2px;
         }
 
         header p {
-            font-size: 1.2rem;
             margin: 5px 0 0;
+            font-size: 1.2rem;
         }
 
+        /* Navigation Bar Styling */
         nav {
-            margin-top: 10px;
+            text-align: center;
+            padding: 10px 0;
+            background: #4682b4;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         nav a {
@@ -56,93 +58,97 @@
             color: #d0eaff;
         }
 
+        /* Hero Section Styling */
         .hero {
             text-align: center;
-            padding: 50px 20px;
-            background: linear-gradient(180deg, #87cefa, #f0f8ff); /* Soft gradient to white */
+            padding: 100px 20px;
+            background: linear-gradient(180deg, #e6f7ff, #ffffff);
             color: #4682b4;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            border-bottom: 5px solid #87cefa;
         }
 
         .hero h2 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
+            font-size: 2.8rem;
+            margin-bottom: 15px;
             font-weight: bold;
+            line-height: 1.2;
         }
 
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             margin: 0 auto;
             max-width: 600px;
         }
 
-        .email-signup {
-            text-align: center;
-            padding: 40px 20px;
-            background: #f0f8ff;
-            border: 2px solid #87cefa;
-            color: #333;
-            margin: 20px auto;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            max-width: 800px;
+        .hero button {
+            margin-top: 30px;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+            background: #4682b4;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
         }
 
-        .email-signup h2 {
-            font-size: 2rem;
-            margin-bottom: 10px;
-            font-weight: bold;
+        .hero button:hover {
+            background: #315f85;
+            transform: translateY(-3px);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 50px 20px;
+            text-align: center;
+            background-color: #f0f8ff;
+        }
+
+        .features h3 {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
             color: #4682b4;
         }
 
-        .email-signup p {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .email-form {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
+        .feature-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .email-form input {
-            padding: 10px;
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-item h4 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #4682b4;
+        }
+
+        .feature-item p {
             font-size: 1rem;
-            border: 1px solid #87cefa;
-            border-radius: 5px;
-            width: 60%;
-            max-width: 400px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            color: #333;
         }
 
-        .email-form button {
-            padding: 10px 20px;
-            font-size: 1rem;
-            font-weight: bold;
-            background: #87cefa;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s ease, transform 0.2s ease;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
-
-        .email-form button:hover {
-            background: #4682b4;
-            transform: scale(1.05);
-        }
-
+        /* Footer */
         footer {
             background: #4682b4;
             color: white;
             text-align: center;
             padding: 20px;
-            margin-top: 20px;
-            border-top: 5px solid #87cefa;
+            margin-top: 50px;
         }
 
         footer p {
@@ -162,27 +168,41 @@
 <body>
     <header>
         <h1>Constantly Connecting</h1>
-        <p>Inspiring Humanity Through Constant Connections</p>
-        <nav>
-            <a href="about.html">About</a>
-            <a href="challenges.html">Challenges</a>
-            <a href="community.html">Community</a>
-            <a href="rewards.html">Rewards</a>
-            <a href="game.html">Play</a>
-            <a href="contact.html">Contact</a>
-        </nav>
+        <p>Inspiring humanity to connect daily through challenges and creativity.</p>
     </header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="challenges.html">Challenges</a>
+        <a href="community.html">Community</a>
+        <a href="rewards.html">Rewards</a>
+        <a href="game.html">Play</a>
+        <a href="contact.html">Contact</a>
+    </nav>
     <section class="hero">
-        <h2>Welcome to Constantly Connecting</h2>
-        <p>Our mission is simple: to inspire you to engage with others in meaningful ways every single day. Let’s overcome anxieties, build bridges, and embrace the beauty of human connection.</p>
+        <h2>Join the Movement to Make Every Day Meaningful</h2>
+        <p>Engage in daily social challenges, spark conversations, and connect with people around you. Together, we can overcome anxieties and build a world of connections.</p>
+        <button onclick="location.href='challenges.html'">Start Your Journey</button>
     </section>
-    <section class="email-signup">
-        <h2>Stay Connected</h2>
-        <p>Subscribe to get daily challenges, inspiring stories, and exclusive updates delivered straight to your inbox.</p>
-        <form class="email-form">
-            <input type="email" id="email" placeholder="Enter your email address" required>
-            <button type="submit">Subscribe</button>
-        </form>
+    <section class="features">
+        <h3>What You'll Experience</h3>
+        <div class="features-grid">
+            <div class="feature-item">
+                <h4>Daily Challenges</h4>
+                <p>Discover new challenges every day to connect with people around you.</p>
+            </div>
+            <div class="feature-item">
+                <h4>Community Stories</h4>
+                <p>Read inspiring stories from others who are embracing the power of connection.</p>
+            </div>
+            <div class="feature-item">
+                <h4>Exclusive Rewards</h4>
+                <p>Earn points for completing challenges and unlock special rewards.</p>
+            </div>
+            <div class="feature-item">
+                <h4>Personal Growth</h4>
+                <p>Overcome your social anxieties and grow as a confident individual.</p>
+            </div>
+        </div>
     </section>
     <footer>
         <p>&copy; 2024 Constantly Connecting. All Rights Reserved. | <a href="https://www.youtube.com/colbymartel" target="_blank">Visit YouTube</a></p>
