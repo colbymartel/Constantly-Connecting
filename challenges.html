@@ -195,15 +195,12 @@
         <a href="rewards.html">Rewards</a>
         <a href="contact.html">Contact</a>
     </nav>
-    <section class="hero">
-        <h2>Discover and Complete Challenges</h2>
-        <p>Take on a new challenge every day and explore past ones. Start connecting now!</p>
-    </section>
     <section class="daily-challenge">
         <h3>Today's Challenge</h3>
         <p>Ask a stranger about their favorite childhood memory.</p>
         <button id="mark-complete">Mark as Complete</button>
         <p><strong>People Completed Today:</strong> <span id="completion-count">0</span></p>
+        <p><strong>Your Streak🔥:</strong> <span id="streak-count">0</span> days</p>
     </section>
     <section class="calendar-section">
         <h3>Past Challenges</h3>
@@ -218,9 +215,16 @@
     <script>
         const markCompleteButton = document.getElementById("mark-complete");
         const completionCountDisplay = document.getElementById("completion-count");
+        const streakCountDisplay = document.getElementById("streak-count");
         const calendar = document.getElementById("calendar");
 
-        let completionCount = 0;
+        // Initialize completion count with a random value between 100 and 200
+        let completionCount = Math.floor(Math.random() * 101) + 100;
+        let streakCount = localStorage.getItem("streakCount") ? parseInt(localStorage.getItem("streakCount"), 10) : 0;
+        let lastCompletedDate = localStorage.getItem("lastCompletedDate");
+
+        completionCountDisplay.textContent = completionCount;
+        streakCountDisplay.textContent = streakCount;
 
         // Get today's date
         const today = new Date();
@@ -247,8 +251,25 @@
                 todayElement.classList.add("completed");
                 completionCount++;
                 completionCountDisplay.textContent = completionCount;
+
+                // Update streak count
+                if (lastCompletedDate === `${currentYear}-${currentMonth}-${todayDate - 1}`) {
+                    streakCount++;
+                } else if (lastCompletedDate !== `${currentYear}-${currentMonth}-${todayDate}`) {
+                    streakCount = 1; // Reset streak if not consecutive
+                }
+                streakCountDisplay.textContent = streakCount;
+                localStorage.setItem("streakCount", streakCount);
+                localStorage.setItem("lastCompletedDate", `${currentYear}-${currentMonth}-${todayDate}`);
             }
         });
+
+        // Simulate auto-incrementing completion count
+        setInterval(() => {
+            const randomIncrement = Math.floor(Math.random() * 3) + 1; // Increment by 1-3
+            completionCount += randomIncrement;
+            completionCountDisplay.textContent = completionCount;
+        }, 5000); // Every 5 seconds
     </script>
 </body>
 </html>
