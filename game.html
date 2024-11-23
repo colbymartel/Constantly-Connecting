@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess My Favorite Music Artist</title>
+    <style>
+        /* General Body Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8ff; /* Light sky blue background */
+            color: #333;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        /* Header Styling */
+        header {
+            background: linear-gradient(90deg, #87cefa, #4682b4);
+            color: white;
+            padding: 20px 0;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        header p {
+            margin: 5px 0 0;
+            font-size: 1.2rem;
+        }
+
+        /* Navigation Styling */
+        nav {
+            background-color: #4682b4;
+            padding: 10px 0;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #d0eaff;
+        }
+
+        /* Game Container Styling */
+        .game-container {
+            padding: 30px;
+            max-width: 600px;
+            margin: 20px auto;
+            background: linear-gradient(180deg, #ffffff, #e6f7ff);
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .game-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Heading within the Game Container */
+        .game-container h2 {
+            font-size: 1.8rem;
+            color: #4682b4;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        /* Input Field Styling */
+        .game-container input {
+            padding: 12px 15px;
+            font-size: 1.1rem;
+            width: 80%;
+            max-width: 400px;
+            margin-bottom: 15px;
+            border: 2px solid #87cefa;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: border 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .game-container input:focus {
+            outline: none;
+            border: 2px solid #4682b4;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Button Styling */
+        .game-container button {
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            background: #4682b4;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .game-container button:hover {
+            background: #315f85;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Response Text Styling */
+        .response {
+            margin-top: 20px;
+            font-size: 1.3rem;
+            color: #ff414d;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* Share Button Styling */
+        .share-container {
+            margin-top: 20px;
+        }
+
+        .share-container button {
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            background: #ff914d;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .share-container button:hover {
+            background: #ff5c33;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Guess My Favorite Music Artist</h1>
+        <p>Submit questions to narrow it down. Can you guess correctly?</p>
+    </header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="challenges.html">Challenges</a>
+        <a href="community.html">Community</a>
+        <a href="rewards.html">Rewards</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+    <div class="game-container">
+        <h2>Ask Your Question</h2>
+        <input type="text" id="question-input" placeholder="Type your question here..." />
+        <button id="submit-question">Submit</button>
+        <div class="response" id="response">Ask a question to start narrowing it down!</div>
+        <div class="share-container" id="share-container" style="display: none;">
+            <button id="share-button">Share Your Result</button>
+        </div>
+    </div>
+
+    <script>
+        const questionInput = document.getElementById("question-input");
+        const submitQuestion = document.getElementById("submit-question");
+        const responseDisplay = document.getElementById("response");
+        const shareContainer = document.getElementById("share-container");
+        const shareButton = document.getElementById("share-button");
+
+        let questionCount = 0;
+        let hasGuessedCorrectly = false;
+        const correctAnswer = "taylor swift"; // Correct artist
+
+        // Function to handle question submission
+        submitQuestion.addEventListener("click", () => {
+            if (hasGuessedCorrectly) {
+                responseDisplay.textContent = "You've already guessed correctly! Share your result.";
+                return;
+            }
+
+            const question = questionInput.value.trim().toLowerCase(); // Normalize input
+
+            if (question === "") {
+                responseDisplay.textContent = "Please enter a question.";
+                return;
+            }
+
+            // Increment question count
+            questionCount++;
+
+            // Check for the correct guess
+            if (question === `is it ${correctAnswer}?` || question === correctAnswer) {
+                responseDisplay.textContent = `Correct! My favorite artist is ${correctAnswer.charAt(0).toUpperCase() + correctAnswer.slice(1)}. 🎉`;
+                hasGuessedCorrectly = true;
+                shareContainer.style.display = "block"; // Show share button
+            } else {
+                responseDisplay.textContent = "Interesting question! Try another.";
+            }
+
+            // Clear the input field
+            questionInput.value = "";
+        });
+
+        // Share functionality
+        shareButton.addEventListener("click", () => {
+            const shareText = `Congrats! You guessed today's music artist on Constantly Connecting in ${questionCount} questions. 🌟`;
+            navigator.clipboard.writeText(shareText).then(() => {
+                alert("Result copied to clipboard! Share it with your friends.");
+            }).catch(err => {
+                console.error("Failed to copy text: ", err);
+            });
+        });
+    </script>
+</body>
+</html>
