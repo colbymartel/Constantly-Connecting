@@ -155,6 +155,11 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
 
+        .calendar .completed {
+            background: #32cd32; /* Green for completed */
+            color: white;
+        }
+
         /* Footer */
         footer {
             background: #4682b4;
@@ -188,7 +193,6 @@
         <a href="challenges.html">Challenges</a>
         <a href="community.html">Community</a>
         <a href="rewards.html">Rewards</a>
-        <a href="game.html">Play</a>
         <a href="contact.html">Contact</a>
     </nav>
     <section class="hero">
@@ -198,31 +202,53 @@
     <section class="daily-challenge">
         <h3>Today's Challenge</h3>
         <p>Ask a stranger about their favorite childhood memory.</p>
-        <button>Mark as Complete</button>
+        <button id="mark-complete">Mark as Complete</button>
+        <p><strong>People Completed Today:</strong> <span id="completion-count">0</span></p>
     </section>
     <section class="calendar-section">
         <h3>Past Challenges</h3>
-        <div class="calendar">
-            <div>Nov 1</div>
-            <div>Nov 2</div>
-            <div>Nov 3</div>
-            <div>Nov 4</div>
-            <div>Nov 5</div>
-            <div>Nov 6</div>
-            <div>Nov 7</div>
-            <div>Nov 8</div>
-            <div>Nov 9</div>
-            <div>Nov 10</div>
-            <div>Nov 11</div>
-            <div>Nov 12</div>
-            <div>Nov 13</div>
-            <div>Nov 14</div>
-            <div>Nov 15</div>
-            <div>Nov 16</div>
+        <div class="calendar" id="calendar">
+            <!-- Dates will be dynamically added here -->
         </div>
     </section>
     <footer>
         <p>&copy; 2024 Constantly Connecting. All Rights Reserved. | <a href="https://www.youtube.com/colbymartel" target="_blank">Visit YouTube</a></p>
     </footer>
+
+    <script>
+        const markCompleteButton = document.getElementById("mark-complete");
+        const completionCountDisplay = document.getElementById("completion-count");
+        const calendar = document.getElementById("calendar");
+
+        let completionCount = 0;
+
+        // Get today's date
+        const today = new Date();
+        const todayDate = today.getDate();
+        const currentMonth = today.getMonth(); // 0-indexed, so January = 0
+        const currentYear = today.getFullYear();
+
+        // Generate a mock calendar
+        const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate(); // Days in the current month
+        for (let i = 1; i <= daysInMonth; i++) {
+            const dayElement = document.createElement("div");
+            dayElement.textContent = i;
+            dayElement.id = `day-${i}`;
+            if (i === todayDate) {
+                dayElement.style.border = "2px solid #4682b4"; // Highlight today's date
+            }
+            calendar.appendChild(dayElement);
+        }
+
+        // Mark today's date as complete
+        markCompleteButton.addEventListener("click", () => {
+            const todayElement = document.getElementById(`day-${todayDate}`);
+            if (todayElement && !todayElement.classList.contains("completed")) {
+                todayElement.classList.add("completed");
+                completionCount++;
+                completionCountDisplay.textContent = completionCount;
+            }
+        });
+    </script>
 </body>
 </html>
