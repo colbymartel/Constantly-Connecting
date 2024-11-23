@@ -281,31 +281,29 @@
             }
         });
 
-        // Share functionality with mobile fallback
+        // Share functionality
         shareButton.addEventListener("click", () => {
             const shareText = `Congrats! You guessed today's music artist on Constantly Connecting in ${questionCount} guesses! 🌟`;
 
-            // Attempt to use the clipboard API
-            navigator.clipboard.writeText(shareText).then(() => {
-                alert("Result copied to clipboard! Share it with your friends.");
-            }).catch(() => {
-                // Fallback for mobile devices or browsers where clipboard API fails
-                const fallbackTextarea = document.createElement("textarea");
-                fallbackTextarea.value = shareText;
-                document.body.appendChild(fallbackTextarea);
-                fallbackTextarea.style.position = "absolute";
-                fallbackTextarea.style.left = "-9999px"; // Hide it offscreen
-                fallbackTextarea.select(); // Select the text
+            // Create a temporary input field to copy text
+            const tempInput = document.createElement("input");
+            tempInput.value = shareText; // Set the value of the input to the share text
+            document.body.appendChild(tempInput); // Add the input to the DOM
+            tempInput.select(); // Select the text
 
-                try {
-                    document.execCommand("copy");
+            try {
+                const successful = document.execCommand("copy"); // Attempt to copy
+                if (successful) {
                     alert("Result copied to clipboard! Share it with your friends.");
-                } catch (err) {
-                    alert("Failed to copy automatically. Please copy manually.");
+                } else {
+                    alert("Copy failed. Please copy the text manually.");
                 }
+            } catch (err) {
+                console.error("Failed to copy text: ", err);
+                alert("Copy failed. Please copy the text manually.");
+            }
 
-                document.body.removeChild(fallbackTextarea); // Clean up
-            });
+            document.body.removeChild(tempInput); // Clean up the temporary input
         });
     </script>
 </body>
