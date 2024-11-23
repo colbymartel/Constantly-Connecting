@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rewards Progress | Constantly Connecting</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f4f6;
+            color: #333;
+            text-align: center;
+        }
+        header {
+            background: linear-gradient(45deg, #6a11cb, #2575fc);
+            color: white;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+        header p {
+            font-size: 1.2rem;
+            margin: 10px 0 0;
+        }
+        nav {
+            margin-top: 15px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        nav a:hover {
+            color: #eef2f3;
+        }
+        .progress-section {
+            padding: 40px 20px;
+            background: #eef2f3;
+        }
+        .progress-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #6a11cb;
+        }
+        .progress-bar-container {
+            margin: 0 auto;
+            max-width: 600px;
+            background: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            overflow: hidden;
+            height: 30px;
+            width: 80%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #2575fc, #6a11cb);
+            text-align: right;
+            padding-right: 10px;
+            line-height: 30px;
+            color: white;
+            font-weight: bold;
+            border-radius: 20px 0 0 20px;
+        }
+        .reward-info {
+            margin: 20px 0;
+            font-size: 1.2rem;
+            color: #333;
+        }
+        .prize-section {
+            padding: 40px 20px;
+            background: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        .prize-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #2575fc;
+        }
+        .prize-list {
+            margin-top: 20px;
+            list-style: none;
+            padding: 0;
+        }
+        .prize-list li {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            text-align: left;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        footer {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        footer p {
+            margin: 0;
+        }
+        footer a {
+            color: #2575fc;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Rewards Progress</h1>
+        <p>Track your journey toward unlocking the Mystery Reward!</p>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="challenges.html">Challenges</a>
+            <a href="community.html">Community</a>
+            <a href="rewards.html">Rewards</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+    <section class="progress-section">
+        <h2>Your Progress</h2>
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="progress-bar" style="width: 40%;">40%</div>
+        </div>
+        <p class="reward-info">You're 40% of the way to unlocking your next reward!</p>
+    </section>
+    <section class="prize-section">
+        <h2>What Could You Win?</h2>
+        <ul class="prize-list">
+            <li>💡 A personalized shoutout on Colby Martel's YouTube channel.</li>
+            <li>🎁 Exclusive Constantly Connecting merchandise.</li>
+            <li>🍽️ A dinner experience with Colby and the team.</li>
+            <li>🎉 A mystery box filled with surprises to help you connect with others.</li>
+            <li>📞 A one-on-one video call with Colby Martel.</li>
+        </ul>
+    </section>
+    <footer>
+        <p>&copy; 2024 Constantly Connecting. All Rights Reserved. | <a href="https://www.youtube.com/colbymartel" target="_blank">Visit YouTube</a></p>
+    </footer>
+    <script>
+        // Example dynamic progress update
+        let progress = 40; // Current progress percentage
+        const progressBar = document.getElementById('progress-bar');
+
+        // Simulate progress updates over time
+        setInterval(() => {
+            if (progress < 100) {
+                progress += Math.floor(Math.random() * 5); // Increment progress by a random amount
+                if (progress > 100) progress = 100; // Cap progress at 100%
+                progressBar.style.width = progress + '%';
+                progressBar.textContent = progress + '%';
+                document.querySelector('.reward-info').textContent = `You're ${progress}% of the way to unlocking your next reward!`;
+            }
+        }, 3000); // Update every 3 seconds
+    </script>
+</body>
+</html>

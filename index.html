@@ -6,11 +6,12 @@
     <title>Colby Martel | Constantly Connecting</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f3f4f6;
             color: #333;
+            line-height: 1.6;
         }
         header {
             background: linear-gradient(45deg, #6a11cb, #2575fc);
@@ -19,10 +20,12 @@
             text-align: center;
             position: sticky;
             top: 0;
+            z-index: 1000;
         }
         header h1 {
             margin: 0;
             font-size: 2.5rem;
+            font-weight: bold;
         }
         header p {
             font-size: 1.2rem;
@@ -36,9 +39,11 @@
             text-decoration: none;
             margin: 0 15px;
             font-size: 1rem;
+            font-weight: bold;
+            transition: color 0.3s ease;
         }
         nav a:hover {
-            text-decoration: underline;
+            color: #eef2f3;
         }
         .hero {
             text-align: center;
@@ -46,8 +51,9 @@
             background: #eef2f3;
         }
         .hero h2 {
-            font-size: 2rem;
+            font-size: 2.5rem;
             margin-bottom: 10px;
+            font-weight: bold;
         }
         .hero p {
             font-size: 1.2rem;
@@ -58,10 +64,13 @@
             padding: 40px 20px;
             background: white;
             text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
         }
         .calendar-challenge h2 {
             font-size: 2rem;
             margin-bottom: 20px;
+            color: #2575fc;
         }
         .calendar {
             display: inline-block;
@@ -70,17 +79,19 @@
             padding: 10px 20px;
             text-align: center;
             margin-bottom: 20px;
+            background-color: #f9f9f9;
         }
         .calendar .date {
             font-size: 2rem;
             color: #6a11cb;
+            font-weight: bold;
         }
         .calendar .day {
             font-size: 1.5rem;
             color: #333;
         }
         .daily-challenge {
-            background: #f9f9f9;
+            background: #f3f4f6;
             border-radius: 8px;
             padding: 20px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -90,11 +101,68 @@
         .daily-challenge h3 {
             font-size: 1.5rem;
             margin-bottom: 10px;
+            font-weight: bold;
         }
         .counter {
             margin-top: 10px;
             font-size: 1rem;
             color: #555;
+        }
+        .leaderboard {
+            padding: 40px 20px;
+            background: #f9f9f9;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        .leaderboard h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #2575fc;
+        }
+        .leaderboard table {
+            margin: 0 auto;
+            border-collapse: collapse;
+            width: 80%;
+            max-width: 600px;
+        }
+        .leaderboard table th, .leaderboard table td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+        .leaderboard table th {
+            background-color: #2575fc;
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+        .leaderboard table td {
+            font-size: 1rem;
+        }
+        .rewards {
+            padding: 40px 20px;
+            background: #eef2f3;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .rewards h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #6a11cb;
+        }
+        .rewards p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .rewards-list {
+            margin-top: 20px;
+        }
+        .rewards-list li {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            text-align: left;
         }
         footer {
             background: #222;
@@ -120,10 +188,11 @@
         <h1>Colby Martel</h1>
         <p>Inspiring Humanity Through Constant Connections</p>
         <nav>
-            <a href="#about">About</a>
-            <a href="#challenges">Challenges</a>
-            <a href="#community">Community</a>
-            <a href="#contact">Contact</a>
+            <a href="about.html">About</a>
+            <a href="challenges.html">Challenges</a>
+            <a href="community.html">Community</a>
+            <a href="rewards.html">Rewards</a>
+            <a href="connect.html">Connect</a>
         </nav>
     </header>
     <section class="hero">
@@ -144,42 +213,79 @@
             </div>
         </div>
     </section>
+    <section class="leaderboard">
+        <h2>Leaderboard</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Name</th>
+                    <th>Challenge Points</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Olivier Melay</td>
+                    <td id="points-olivier">0</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>SoupTimmy</td>
+                    <td id="points-souptimmy">0</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Colby Martel</td>
+                    <td id="points-colby">0</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <section class="rewards" id="rewards">
+        <h2>Rewards</h2>
+        <p>Earn rewards for your dedication to daily challenges and building connections! Here's what you can achieve:</p>
+        <ul class="rewards-list">
+            <li><strong>10 Points:</strong> Shoutout on our YouTube channel.</li>
+            <li><strong>50 Points:</strong> Exclusive merch item.</li>
+            <li><strong>100 Points:</strong> A one-on-one video call with Colby.</li>
+            <li><strong>250 Points:</strong> Free dinner with Colby and the team.</li>
+        </ul>
+    </section>
     <footer>
         <p>&copy; 2024 Colby Martel. All Rights Reserved. | <a href="https://www.youtube.com/colbymartel" target="_blank">YouTube Channel</a></p>
     </footer>
     <script>
-        // Set today's date and day
+        // JavaScript for dynamic updates (date, challenges, leaderboard)
+        const now = new Date();
         const dateElement = document.getElementById('date');
         const dayElement = document.getElementById('day');
-        const now = new Date();
         const options = { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' };
         const formattedDate = now.toLocaleDateString('en-US', options);
         const [weekday, ...rest] = formattedDate.split(', ');
         dayElement.textContent = weekday;
         dateElement.textContent = rest.join(', ');
 
-        // Define daily challenges
         const challenges = [
             { title: "Ask a Wholesome Question", description: "Start a conversation by asking a question that sparks joy or reflection." },
             { title: "Take Someone to Dinner", description: "Invite a stranger or acquaintance to share a meaningful meal." },
-            { title: "Compliment a Stranger", description: "Make someone’s day by offering a genuine and thoughtful compliment." },
-            { title: "Call a Loved One", description: "Reach out to someone you care about and tell them how much they mean to you." },
+            { title: "Compliment a Stranger", description: "Brighten someone’s day by offering a genuine compliment." }
         ];
-
-        // Randomly pick a challenge
         const challenge = challenges[Math.floor(Math.random() * challenges.length)];
         document.getElementById('challenge-title').textContent = challenge.title;
         document.getElementById('challenge-desc').textContent = challenge.description;
 
-        // Counter simulation (this would typically come from a server)
-        let challengeCount = Math.floor(Math.random() * 100) + 1; // Random starting number
+        let challengeCount = Math.floor(Math.random() * 100) + 1;
         document.getElementById('challenge-count').textContent = challengeCount;
 
-        // Simulate real-time counter update
-        setInterval(() => {
-            challengeCount += Math.floor(Math.random() * 5); // Increment by a random small number
-            document.getElementById('challenge-count').textContent = challengeCount;
-        }, 5000);
+        const points = {
+            olivier: Math.floor(Math.random() * 500),
+            souptimmy: Math.floor(Math.random() * 400),
+            colby: Math.floor(Math.random() * 300)
+        };
+        document.getElementById('points-olivier').textContent = points.olivier;
+        document.getElementById('points-souptimmy').textContent = points.souptimmy;
+        document.getElementById('points-colby').textContent = points.colby;
     </script>
 </body>
 </html>

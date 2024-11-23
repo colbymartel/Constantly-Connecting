@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Constantly Connecting</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f4f6;
+            color: #333;
+            text-align: center;
+        }
+        header {
+            background: linear-gradient(45deg, #6a11cb, #2575fc);
+            color: white;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+        header p {
+            font-size: 1.2rem;
+            margin: 10px 0 0;
+        }
+        nav {
+            margin-top: 15px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        nav a:hover {
+            color: #eef2f3;
+        }
+        .contact-section {
+            padding: 40px 20px;
+            background: #eef2f3;
+        }
+        .contact-section h2 {
+            font-size: 2rem;
+            color: #6a11cb;
+            margin-bottom: 20px;
+        }
+        .contact-form {
+            background: white;
+            padding: 20px;
+            max-width: 600px;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .contact-form input,
+        .contact-form textarea,
+        .contact-form button {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .contact-form textarea {
+            resize: none;
+            height: 100px;
+        }
+        .contact-form button {
+            background: #2575fc;
+            color: white;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .contact-form button:hover {
+            background: #6a11cb;
+        }
+        footer {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        footer p {
+            margin: 0;
+        }
+        footer a {
+            color: #2575fc;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Contact</h1>
+        <p>Submit Your Challenge Ideas or Send Me a Message</p>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="challenges.html">Challenges</a>
+            <a href="community.html">Community</a>
+            <a href="rewards.html">Rewards</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+    <section class="contact-section">
+        <h2>Get in Touch</h2>
+        <form class="contact-form" id="contact-form">
+            <input type="text" id="name" placeholder="Your Name" required>
+            <input type="email" id="email" placeholder="Your Email" required>
+            <textarea id="message" placeholder="Write your message or challenge idea here..." required></textarea>
+            <button type="submit">Submit</button>
+        </form>
+        <p id="form-response" style="color: #6a11cb; font-weight: bold;"></p>
+    </section>
+    <footer>
+        <p>&copy; 2024 Constantly Connecting. All Rights Reserved. | <a href="https://www.youtube.com/colbymartel" target="_blank">Visit YouTube</a></p>
+    </footer>
+    <script>
+        const form = document.getElementById('contact-form');
+        const formResponse = document.getElementById('form-response');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            // Simulate form submission
+            formResponse.textContent = "Thank you, " + name + "! Your message has been sent.";
+            form.reset();
+        });
+    </script>
+</body>
+</html>
