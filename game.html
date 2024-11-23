@@ -240,6 +240,16 @@
         let hasGuessedCorrectly = false;
         const correctAnswer = "noah kahan"; // Lowercase to standardize comparisons
 
+        // Predefined Q&A Dictionary
+        const predefinedQuestions = {
+            "is this a male artist?": "Yes!",
+            "does he play guitar?": "Yes!",
+            "is he from the united states?": "No!",
+            "is he from vermont?": "Yes!",
+            "does he perform folk music?": "Yes!",
+            "is his music sad?": "Sometimes!",
+        };
+
         // Function to handle submission
         const handleSubmission = () => {
             if (hasGuessedCorrectly) {
@@ -263,8 +273,10 @@
                     .join(" ")}. 🎉`;
                 hasGuessedCorrectly = true;
                 shareContainer.style.display = "block";
+            } else if (predefinedQuestions[question]) {
+                responseDisplay.textContent = predefinedQuestions[question];
             } else {
-                responseDisplay.textContent = "Interesting question! Try another.";
+                responseDisplay.textContent = "I don't know. Try asking something else.";
             }
 
             questionInput.value = "";
