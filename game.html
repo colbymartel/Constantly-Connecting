@@ -258,14 +258,34 @@
         });
 
         // Share functionality
-        shareButton.addEventListener("click", () => {
-            const shareText = `Congrats! You guessed today's music artist, ${correctAnswer}, in ${questionCount} questions and ${guessCount} guesses! 🌟`;
-            navigator.clipboard.writeText(shareText).then(() => {
-                alert("Result copied to clipboard! Share it with your friends.");
-            }).catch(err => {
-                console.error("Failed to copy text: ", err);
-            });
+        // Share functionality
+shareButton.addEventListener("click", () => {
+    const shareText = `Congrats! You guessed today's music artist, ${correctAnswer}, in ${questionCount} questions and ${guessCount} guesses! 🌟`;
+    
+    if (navigator.clipboard) {
+        navigator.clipboard.writeText(shareText).then(() => {
+            alert("Result copied to clipboard! Share it with your friends.");
+        }).catch(err => {
+            console.error("Failed to copy text: ", err);
+            alert("Failed to copy text. Please try again.");
         });
+    } else {
+        // Fallback for browsers that don't support the Clipboard API
+        const tempInput = document.createElement("textarea");
+        tempInput.value = shareText;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        try {
+            document.execCommand("copy");
+            alert("Result copied to clipboard! Share it with your friends.");
+        } catch (err) {
+            console.error("Failed to copy text: ", err);
+            alert("Failed to copy text. Please try again.");
+        }
+        document.body.removeChild(tempInput); // Clean up
+    }
+});
+
     </script>
 </body>
 </html>
