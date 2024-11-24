@@ -35,50 +35,6 @@
             font-size: 1.2rem;
         }
 
-        /* Navigation Bar Styling */
-        nav {
-            text-align: center;
-            padding: 10px 0;
-            background: #4682b4;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            transition: color 0.3s ease;
-        }
-
-        nav a:hover {
-            color: #d0eaff;
-        }
-
-        /* Hero Section Styling */
-        .hero {
-            text-align: center;
-            padding: 100px 20px;
-            background: linear-gradient(180deg, #e6f7ff, #ffffff);
-            color: #4682b4;
-        }
-
-        .hero h2 {
-            font-size: 2.8rem;
-            margin-bottom: 15px;
-            font-weight: bold;
-            line-height: 1.2;
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin: 0 auto;
-            max-width: 600px;
-        }
-
         /* Game Section */
         .game-section {
             padding: 50px 20px;
@@ -102,6 +58,7 @@
             text-align: center;
         }
 
+        .game-container select,
         .game-container input {
             padding: 12px 15px;
             font-size: 1.1rem;
@@ -114,7 +71,8 @@
             transition: border 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .game-container input:focus {
+        .game-container input:focus,
+        .game-container select:focus {
             outline: none;
             border: 2px solid #4682b4;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -139,10 +97,12 @@
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
         }
 
-        .stats {
-            margin-top: 20px;
-            font-size: 1.3rem;
-            color: #4682b4;
+        .game-container .give-up {
+            background: #ff4d4d;
+        }
+
+        .game-container .give-up:hover {
+            background: #cc0000;
         }
 
         .response {
@@ -175,147 +135,136 @@
             transform: translateY(-3px);
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
         }
-
-        /* Footer */
-        footer {
-            background: #4682b4;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            margin-top: 50px;
-        }
-
-        footer p {
-            margin: 0;
-        }
-
-        footer a {
-            color: #f0f8ff;
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
     </style>
 </head>
 <body>
     <header>
         <h1>Guess My Favorite Music Artist</h1>
-        <p>Submit questions to narrow it down. Can you guess correctly?</p>
+        <p>Submit questions and make guesses to figure out the artist.</p>
     </header>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="challenges.html">Challenges</a>
-        <a href="community.html">Community</a>
-        <a href="rewards.html">Rewards</a>
-        <a href="game.html">Play</a>
-        <a href="contact.html">Contact</a>
-    </nav>
     <section class="game-section">
         <h3>Start Guessing</h3>
         <div class="game-container">
-            <input type="text" id="question-input" placeholder="Type your question here..." />
-            <button id="submit-question">Submit</button>
-            <div class="stats">Questions Asked: <span id="question-count">0</span></div>
-            <div class="response" id="response">Ask a question to start narrowing it down!</div>
+            <select id="question-dropdown">
+                <option value="" disabled selected>Choose a question</option>
+                <option value="is this a male artist?">Is this a male artist?</option>
+                <option value="are they retired?">Are they retired?</option>
+                <option value="are they over 30 years old?">Are they over 30 years old?</option>
+                <option value="are they over 40 years old?">Are they over 40 years old?</option>
+                <option value="are they over 50 years old?">Are they over 50 years old?</option>
+                <option value="are they still alive?">Are they still alive?</option>
+                <option value="are they from north america?">Are they from North America?</option>
+                <option value="are they from the united states?">Are they from the United States?</option>
+                <option value="are they from europe?">Are they from Europe?</option>
+                <option value="do they perform pop music?">Do they perform pop music?</option>
+                <option value="do they perform rap music?">Do they perform rap music?</option>
+                <option value="do they perform R&B music?">Do they perform R&B music?</option>
+                <option value="do they perform rock music?">Do they perform rock music?</option>
+                <option value="do they perform country music?">Do they perform country music?</option>
+                <option value="do they perform sad music?">Do they perform sad music?</option>
+                <option value="do they have more than 20M listeners?">Do they have more than 20M monthly listeners?</option>
+                <option value="are they in a band?">Are/were they in a band?</option>
+            </select>
+            <button id="submit-question">Submit Question</button>
+            <div class="response" id="question-response">Select a question to start.</div>
+
+            <input type="text" id="artist-guess" placeholder="Type your artist guess here..." />
+            <button id="submit-guess">Submit Guess</button>
+            <button id="give-up" class="give-up">Give Up</button>
+            <div class="response" id="guess-response">Guess the artist's name!</div>
             <div class="share-container" id="share-container" style="display: none;">
                 <button id="share-button">Share Your Result</button>
             </div>
         </div>
     </section>
-    <footer>
-        <p>&copy; 2024 Constantly Connecting. All Rights Reserved. | <a href="https://www.youtube.com/colbymartel" target="_blank">Visit YouTube</a></p>
-    </footer>
 
     <script>
-        const questionInput = document.getElementById("question-input");
+        const questionDropdown = document.getElementById("question-dropdown");
         const submitQuestion = document.getElementById("submit-question");
-        const questionCountDisplay = document.getElementById("question-count");
-        const responseDisplay = document.getElementById("response");
+        const questionResponse = document.getElementById("question-response");
+
+        const artistGuess = document.getElementById("artist-guess");
+        const submitGuess = document.getElementById("submit-guess");
+        const giveUp = document.getElementById("give-up");
+        const guessResponse = document.getElementById("guess-response");
         const shareContainer = document.getElementById("share-container");
         const shareButton = document.getElementById("share-button");
 
+        const correctAnswer = "Madison Beer"; // Correct artist name
         let questionCount = 0;
+        let guessCount = 0;
         let hasGuessedCorrectly = false;
-        const correctAnswer = "noah kahan"; // Lowercase to standardize comparisons
 
-        // Predefined Q&A Dictionary
-        const predefinedQuestions = {
-            "is this a male artist?": "Yes!",
-            "does he play guitar?": "Yes!",
-            "is he from the united states?": "No!",
-            "is he from vermont?": "Yes!",
-            "does he perform folk music?": "Yes!",
-            "is his music sad?": "Sometimes!",
+        // Predefined answers for dropdown questions
+        const predefinedAnswers = {
+            "is this a male artist?": "No!",
+            "are they retired?": "No!",
+            "are they over 30 years old?": "No!",
+            "are they over 40 years old?": "No!",
+            "are they over 50 years old?": "No!",
+            "are they still alive?": "Yes!",
+            "are they from north america?": "Yes!",
+            "are they from the united states?": "Yes!",
+            "are they from europe?": "No!",
+            "do they perform pop music?": "Yes!",
+            "do they perform rap music?": "No!",
+            "do they perform R&B music?": "No!",
+            "do they perform rock music?": "No!",
+            "do they perform country music?": "No!",
+            "do they perform sad music?": "Yes!",
+            "do they have more than 20M listeners?": "No!",
+            "are they in a band?": "No!",
         };
 
-        // Function to handle submission
-        const handleSubmission = () => {
-            if (hasGuessedCorrectly) {
-                responseDisplay.textContent = "You've already guessed correctly! Share your result.";
-                return;
-            }
+        // Handle question submission
+        submitQuestion.addEventListener("click", () => {
+            const selectedQuestion = questionDropdown.value;
 
-            const question = questionInput.value.trim().toLowerCase();
-            if (question === "") {
-                responseDisplay.textContent = "Please enter a question.";
+            if (!selectedQuestion) {
+                questionResponse.textContent = "Please select a question!";
                 return;
             }
 
             questionCount++;
-            questionCountDisplay.textContent = questionCount;
+            questionResponse.textContent = predefinedAnswers[selectedQuestion] || "I don't know. Try another question.";
+        });
 
-            if (question === `is it ${correctAnswer}?` || question === correctAnswer) {
-                responseDisplay.textContent = `Correct! Today's music artist is ${correctAnswer
-                    .split(" ")
-                    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-                    .join(" ")}. 🎉`;
-                hasGuessedCorrectly = true;
-                shareContainer.style.display = "block";
-            } else if (predefinedQuestions[question]) {
-                responseDisplay.textContent = predefinedQuestions[question];
-            } else {
-                responseDisplay.textContent = "I don't know. Try asking something else.";
-            }
+        // Handle artist guess submission
+        // Handle artist guess submission
+        submitGuess.addEventListener("click", () => {
+        const guess = artistGuess.value.trim().toLowerCase();
 
-            questionInput.value = "";
-        };
+     if (!guess) {
+        guessResponse.textContent = "Please enter a guess!";
+        return;
+    }
 
-        // Attach event listener to the button
-        submitQuestion.addEventListener("click", handleSubmission);
+        guessCount++;
 
-        // Allow pressing Enter to submit
-        questionInput.addEventListener("keypress", (event) => {
-            if (event.key === "Enter") {
-                event.preventDefault();
-                handleSubmission();
-            }
+        if (guess === correctAnswer.toLowerCase()) {
+        guessResponse.textContent = `Correct! The artist is ${correctAnswer}. 🎉`;
+        hasGuessedCorrectly = true;
+        shareContainer.style.display = "block";
+    } else {
+        guessResponse.textContent = "Incorrect! Keep trying.";
+    }
+
+    artistGuess.value = "";
+});
+
+        // Handle give-up action
+        giveUp.addEventListener("click", () => {
+            guessResponse.textContent = `Sorry, the correct answer is ${correctAnswer.charAt(0).toUpperCase() + correctAnswer.slice(1)}. Better luck next time!`;
         });
 
         // Share functionality
         shareButton.addEventListener("click", () => {
-            const shareText = `Congrats! You guessed today's music artist on Constantly Connecting in ${questionCount} guesses! 🌟`;
-
-            // Create a temporary input field to copy text
-            const tempInput = document.createElement("input");
-            tempInput.value = shareText; // Set the value of the input to the share text
-            document.body.appendChild(tempInput); // Add the input to the DOM
-            tempInput.select(); // Select the text
-
-            try {
-                const successful = document.execCommand("copy"); // Attempt to copy
-                if (successful) {
-                    alert("Result copied to clipboard! Share it with your friends.");
-                } else {
-                    alert("Copy failed. Please copy the text manually.");
-                }
-            } catch (err) {
+            const shareText = `Congrats! You guessed today's music artist, ${correctAnswer}, in ${questionCount} questions and ${guessCount} guesses! 🌟`;
+            navigator.clipboard.writeText(shareText).then(() => {
+                alert("Result copied to clipboard! Share it with your friends.");
+            }).catch(err => {
                 console.error("Failed to copy text: ", err);
-                alert("Copy failed. Please copy the text manually.");
-            }
-
-            document.body.removeChild(tempInput); // Clean up the temporary input
+            });
         });
     </script>
 </body>
