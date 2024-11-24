@@ -258,31 +258,33 @@
         });
 
         // Share functionality
-        // Share functionality
 shareButton.addEventListener("click", () => {
     const shareText = `Congrats! You guessed today's music artist, ${correctAnswer}, in ${questionCount} questions and ${guessCount} guesses! 🌟`;
     
-    if (navigator.clipboard) {
+    // Clipboard API for secure contexts
+    if (navigator.clipboard && window.isSecureContext) {
         navigator.clipboard.writeText(shareText).then(() => {
             alert("Result copied to clipboard! Share it with your friends.");
         }).catch(err => {
-            console.error("Failed to copy text: ", err);
+            console.error("Clipboard API failed: ", err);
             alert("Failed to copy text. Please try again.");
         });
     } else {
-        // Fallback for browsers that don't support the Clipboard API
+        // Fallback method for insecure contexts or older browsers
         const tempInput = document.createElement("textarea");
         tempInput.value = shareText;
+        tempInput.style.position = "absolute";
+        tempInput.style.left = "-9999px"; // Hide from view
         document.body.appendChild(tempInput);
         tempInput.select();
         try {
             document.execCommand("copy");
             alert("Result copied to clipboard! Share it with your friends.");
         } catch (err) {
-            console.error("Failed to copy text: ", err);
+            console.error("Fallback copy method failed: ", err);
             alert("Failed to copy text. Please try again.");
         }
-        document.body.removeChild(tempInput); // Clean up
+        document.body.removeChild(tempInput);
     }
 });
 
