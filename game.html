@@ -144,6 +144,73 @@
             transform: translateY(-3px);
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
         }
+
+        .share-container .raffle-button {
+            background: #4caf50;
+            margin-left: 10px;
+        }
+
+        .share-container .raffle-button:hover {
+            background: #388e3c;
+        }
+
+        /* Popup Guide */
+        .popup-guide {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .popup-content {
+            background: #fff;
+            color: #333;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            position: relative;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .popup-content h2 {
+            margin-top: 0;
+            font-size: 2rem;
+            color: #4682b4;
+        }
+
+        .popup-content p {
+            font-size: 1.1rem;
+            margin: 10px 0;
+        }
+
+        .popup-content ul {
+            text-align: left;
+        }
+
+        .close-popup {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+            cursor: pointer;
+        }
+
+        .close-popup:hover {
+            color: red;
+        }
     </style>
 </head>
 <body>
@@ -184,22 +251,40 @@
             <div class="response" id="guess-response">Guess the artist's name!</div>
             <div class="share-container" id="share-container" style="display: none;">
                 <button id="share-button">Share Your Result</button>
+                <button id="raffle-button" class="raffle-button">Enter Raffle</button>
             </div>
         </div>
     </section>
+
+    <div class="popup-guide" id="popup-guide">
+        <div class="popup-content">
+            <button class="close-popup" id="close-popup">&times;</button>
+            <h2>How to Play</h2>
+            <p>Welcome to Guess The Daily Music Artist! Here's how to play:</p>
+            <ul>
+                <li>Select a question from the dropdown to learn more about the artist.</li>
+                <li>Use the answers to make educated guesses.</li>
+                <li>Type your guess and submit it to see if you're correct.</li>
+                <li>Use hints if you're stuck, but try to guess with as few hints as possible!</li>
+            </ul>
+            <p>Good luck and have fun!</p>
+        </div>
+    </div>
 
     <script>
         const questionDropdown = document.getElementById("question-dropdown");
         const submitQuestion = document.getElementById("submit-question");
         const questionResponse = document.getElementById("question-response");
         const hintButton = document.getElementById("hint");
-
         const artistGuess = document.getElementById("artist-guess");
         const submitGuess = document.getElementById("submit-guess");
         const giveUp = document.getElementById("give-up");
         const guessResponse = document.getElementById("guess-response");
         const shareContainer = document.getElementById("share-container");
         const shareButton = document.getElementById("share-button");
+        const raffleButton = document.getElementById("raffle-button");
+        const popupGuide = document.getElementById("popup-guide");
+        const closePopup = document.getElementById("close-popup");
 
         const correctAnswer = "Madison Beer"; // Correct artist name
         let questionCount = 0;
@@ -227,6 +312,11 @@
             "do they have more than 20M listeners?": "No!",
             "are they in a band?": "No!",
         };
+
+        // Handle popup close
+        closePopup.addEventListener("click", () => {
+            popupGuide.style.display = "none";
+        });
 
         // Handle question submission
         submitQuestion.addEventListener("click", () => {
@@ -290,7 +380,7 @@
 
         // Share functionality
         shareButton.addEventListener("click", () => {
-            const shareText = `Congrats! You guessed today's music artist, ${correctAnswer}, in ${questionCount} questions, ${guessCount} guesses, and ${hintCount} hints! 🌟 Try at https://guessthesinger.com`;
+            const shareText = `Congrats! You guessed today's music artist in ${questionCount} questions, ${guessCount} guesses, and ${hintCount} hints! 🌟 Try at guessthesinger.com`;
             
             if (navigator.clipboard && window.isSecureContext) {
                 navigator.clipboard.writeText(shareText).then(() => {
@@ -315,6 +405,11 @@
                 }
                 document.body.removeChild(tempInput);
             }
+        });
+
+        // Handle raffle entry
+        raffleButton.addEventListener("click", () => {
+            alert("You've entered the raffle! Good luck!");
         });
     </script>
 </body>
